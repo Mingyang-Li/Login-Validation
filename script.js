@@ -54,10 +54,17 @@ function checkValidEmail(input) {
     }
 }
 
+//check if both password match
+function checkPasswordsMatch(pw1, pw2) {
+    if (pw1.value !== pw2.value) {
+        showError(pw2, "Passwords do not match");
+    }
+}
+
 //add event listener
 form.addEventListener("submit", function (e) {
     e.preventDefault();
-
+    checkValidEmail(email);
     checkRequired([username, email, password, password2]);
 
     //only display length validation if inputs aren't empty
@@ -66,8 +73,7 @@ form.addEventListener("submit", function (e) {
         checkLength(username, 3, 10);
         checkLength(password, 8, 20);
     }
-
-    checkValidEmail(email);
+    checkPasswordsMatch(password, password2);
 });
 
 
